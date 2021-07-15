@@ -18,7 +18,10 @@ print('-- Start PostgreSQL --')
 os.system('install.bat')
 
 print('-- Create Database --')
-create_database()
+try:
+    create_database()
+except Exception:
+    print('Databae exists')
 
 port = get_ports()[1]
 
