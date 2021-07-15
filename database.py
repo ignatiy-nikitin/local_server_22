@@ -4,10 +4,10 @@ import psycopg2
 def get_con():
     return psycopg2.connect(
         database="postgres",
-        user="ignatijnikitin",
+        user="postgres",
         password="",
         host="127.0.0.1",
-        port="5432"
+        port="5439"
     )
 
 
