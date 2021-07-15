@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title></title>
+    <meta name="description" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="" />
+  </head>
+  <body>
+    <form action="" method=post>
+      <p>
+        <b>Добавить новое значение:</b>
+      </p>
+      <p>
+        <input type="text" name="adding_value"/><br/>
+      </p>
+      <p><input type="submit" value="Добавить"/></p>
+    </form>
+
+    <table border="1px">
+        <caption>
+          ITEMS
+        </caption>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>VALUE</th>
+          </tr>
+        </thead>
+        <tbody>
+            {% for item in items %}
+                <tr>
+                    <th>{{ item.0 }}</th>
+                    <td>{{ item.1 }}</td>
+                </tr>
+
+            {% endfor %}
+        </tbody>
+      </table>
+  </body>
+</html>
