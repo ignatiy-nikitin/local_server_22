@@ -1,3 +1,6 @@
+from database import create_database
+import os
+
 from port_check import ports_check
 from config import get_ports
 from waitress import serve
@@ -10,6 +13,12 @@ HOST = '127.0.0.1'
 
 if not ports_check():
     exit()
+
+print('-- Start PostgreSQL --')
+os.system('install.bat')
+
+print('-- Create Database --')
+create_database()
 
 port = get_ports()[1]
 
