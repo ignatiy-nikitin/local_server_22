@@ -17,11 +17,11 @@ if not ports_check():
 print('-- Start PostgreSQL --')
 os.system('install.bat')
 
-print('-- Create Database --')
-try:
-    create_database()
-except Exception:
-    print('Databae exists')
+# print('-- Create Database --')
+# try:
+#     create_database()
+# except Exception:
+#     print('Databae exists')
 
 port = get_ports()[1]
 
