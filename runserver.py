@@ -30,26 +30,29 @@ line = f"""
 with open('start_db.bat', 'w') as file_:
     file_.write(line)
 
-if os.system('start_db.bat') != 0:
-    print('It takes some time to grant access. Do not turn off the program')
-    line_permissions = f"""
-    @SET PATH="%CD%\\PostgreSQL\\pgsql\\bin";%PATH%
-    @SET PGDATA=%CD%\\PostgreSQL\\pgsql\\data
-    @SET PGDATABASE=postgres
-    @SET PGUSER=postgres
-    @SET PGPORT=5439
-    @SET PGLOCALEDIR="%CD%\\PostgreSQL\\pgsql\\share\\locale"
 
-    icacls "%CD%" /grant "%USERNAME%":(OI)(CI)F /T
+os.system('start_db.bat')
 
-    "%CD%\\PostgreSQL\\pgsql\\bin\\initdb" -U postgres -A trust
-    """
+# if os.system('start_db.bat') != 0:
+#     print('It takes some time to grant access. Do not turn off the program')
+#     line_permissions = f"""
+#     @SET PATH="%CD%\\PostgreSQL\\pgsql\\bin";%PATH%
+#     @SET PGDATA=%CD%\\PostgreSQL\\pgsql\\data
+#     @SET PGDATABASE=postgres
+#     @SET PGUSER=postgres
+#     @SET PGPORT=5439
+#     @SET PGLOCALEDIR="%CD%\\PostgreSQL\\pgsql\\share\\locale"
 
-    with open('set_permissions.bat', 'w') as file_:
-        file_.write(line)
+#     icacls "%CD%" /grant "%USERNAME%":(OI)(CI)F /T
 
-    os.system('set_permissions.bat')
-    os.system('start_db.bat')
+#     "%CD%\\PostgreSQL\\pgsql\\bin\\initdb" -U postgres -A trust
+#     """
+
+#     with open('set_permissions.bat', 'w') as file_:
+#         file_.write(line)
+
+#     os.system('set_permissions.bat')
+#     os.system('start_db.bat')
 
 print('-- Create Database --')
 try:
