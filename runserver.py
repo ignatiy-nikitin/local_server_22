@@ -1,4 +1,4 @@
-from config import get_waitress_port
+from config import get_postgresql_port, get_waitress_port
 import os
 
 from waitress import serve
@@ -16,6 +16,17 @@ if not ports_check():
 
 print('-- Start PostgreSQL --')
 os.system('start_db.bat')
+
+os.system('@SET PATH="%CD%\\PostgreSQL\\pgsql\\bin";%PATH%')
+os.system('@SET PGDATA=%CD%\\PostgreSQL\\pgsql\\data')
+os.system('@SET PGDATABASE=postgres')
+os.system('@SET PGUSER=postgres')
+os.system(f'@SET PGPORT={get_postgresql_port()}')
+os.system('@SET PGLOCALEDIR=%CD%\\PostgreSQL\\pgsql\\share\\locale')
+
+# "%CD%\PostgreSQL\pgsql\bin\initdb" -U postgres -A trust
+
+os.system('"%CD%\\PostgreSQL\\pgsql\\bin\\pg_ctl" -D "%CD%\\PostgreSQL\\pgsql\\data" -l logfile start')
 
 print('-- Create Database --')
 try:
