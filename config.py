@@ -53,6 +53,14 @@ def _check_ports():
     return ports_not_int
 
 
+def get_postgresql_port():
+    return int(CONFIG['SETTINGS']['postresql_port'])
+
+
+def get_waitress_port():
+    return int(CONFIG['SETTINGS']['waitress_port'])
+
+
 def check_config():
     if not _is_config_file_exists():
         _set_config_params()
@@ -69,5 +77,5 @@ def check_config():
     return True, 'ok3'
 
 
-def get_ports():
-    return int(CONFIG['SETTINGS']['postresql_port']), int(CONFIG['SETTINGS']['waitress_port'])
+# def get_ports():
+#     return int(CONFIG['SETTINGS']['postresql_port']), int(CONFIG['SETTINGS']['waitress_port'])

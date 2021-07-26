@@ -1,3 +1,4 @@
+from config import CONFIG, get_postgresql_port
 import psycopg2
 
 
@@ -7,7 +8,7 @@ def get_con():
         user="postgres",
         password="",
         host="127.0.0.1",
-        port="5439"
+        port=get_postgresql_port(),
     )
 
 

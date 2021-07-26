@@ -1,8 +1,9 @@
+from config import get_waitress_port
 import os
 
 from waitress import serve
 
-from config import get_ports
+
 from database import create_database
 from port_check import ports_check
 from server import create_app
@@ -22,7 +23,7 @@ try:
 except Exception:
     print('Databae exists')
 
-waitress_port = get_ports()[1]
+waitress_port = get_waitress_port()
 
 print('-- Waitress --')
 app = create_app()
