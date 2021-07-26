@@ -34,7 +34,7 @@ def ports_check():
         print('PostreSQL port is busy. Go to config.ini, change it and restart program')
         return False
     print('Checking Waitress port...')
-    if is_port_open(HOST, postresql_port):
+    if is_port_open(HOST, waitress_port):
         print('Waitress port is busy. Go to config.ini, change it and restart program')
         return False
 
