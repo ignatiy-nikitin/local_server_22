@@ -15,7 +15,7 @@ if not ports_check():
     exit()
 
 print('-- Start PostgreSQL --')
-os.system('start_db.bat')
+# os.system('start_db.bat')
 
 os.system('@SET PATH="%CD%\\PostgreSQL\\pgsql\\bin";%PATH%')
 os.system('@SET PGDATA=%CD%\\PostgreSQL\\pgsql\\data')
