@@ -1,4 +1,4 @@
-from config import check_config, get_ports
+from config import check_config, get_postgresql_port, get_waitress_port
 import socket
 
 
@@ -27,7 +27,7 @@ def ports_check():
         return False
     print('Checking file is ok')
 
-    postresql_port, waitress_port = get_ports()
+    postresql_port, waitress_port = get_postgresql_port(), get_waitress_port()
 
     print('Checking PostreSQL port...')
     if is_port_open(HOST, postresql_port):
