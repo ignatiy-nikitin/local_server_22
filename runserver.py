@@ -15,18 +15,22 @@ if not ports_check():
     exit()
 
 print('-- Start PostgreSQL --')
-# os.system('start_db.bat')
 
-os.system('@SET PATH="%CD%\\PostgreSQL\\pgsql\\bin";%PATH%')
-os.system('@SET PGDATA=%CD%\\PostgreSQL\\pgsql\\data')
-os.system('@SET PGDATABASE=postgres')
-os.system('@SET PGUSER=postgres')
-os.system(f'@SET PGPORT={get_postgresql_port()}')
-os.system('@SET PGLOCALEDIR=%CD%\\PostgreSQL\\pgsql\\share\\locale')
+line = f"""
+@SET PATH="%CD%\\PostgreSQL\\pgsql\\bin";%PATH%
+@SET PGDATA=%CD%\\PostgreSQL\\pgsql\\data
+@SET PGDATABASE=postgres
+@SET PGUSER=postgres
+@SET PGPORT={get_postgresql_port()}
+@SET PGLOCALEDIR=%CD%\\PostgreSQL\\pgsql\\share\\locale
 
-# "%CD%\PostgreSQL\pgsql\bin\initdb" -U postgres -A trust
+"%CD%\\PostgreSQL\\pgsql\\bin\\pg_ctl" -D "%CD%\\PostgreSQL\\pgsql\\data" -l logfile start
+"""
 
-os.system('"%CD%\\PostgreSQL\\pgsql\\bin\\pg_ctl" -D "%CD%\\PostgreSQL\\pgsql\\data" -l logfile start')
+with open('start_db.bat', 'w') as file_:
+    file_.write(line)
+
+os.system('start_db.bat')
 
 print('-- Create Database --')
 try:
@@ -39,7 +43,7 @@ waitress_port = get_waitress_port()
 print('-- Waitress --')
 app = create_app()
 print(f'Running server onn host {HOST} on port {waitress_port}...')
-os.system('start http://127.0.0.1:8000')
+os.system(f'start http://127.0.0.1:{waitress_port}')
 serve(app, host=HOST, port=waitress_port)
 print('Server stopped')
 input()
