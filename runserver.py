@@ -33,27 +33,6 @@ with open('start_db.bat', 'w') as file_:
 
 os.system('start_db.bat')
 
-# if os.system('start_db.bat') != 0:
-#     print('It takes some time to grant access. Do not turn off the program')
-#     line_permissions = f"""
-#     @SET PATH="%CD%\\PostgreSQL\\pgsql\\bin";%PATH%
-#     @SET PGDATA=%CD%\\PostgreSQL\\pgsql\\data
-#     @SET PGDATABASE=postgres
-#     @SET PGUSER=postgres
-#     @SET PGPORT=5439
-#     @SET PGLOCALEDIR="%CD%\\PostgreSQL\\pgsql\\share\\locale"
-
-#     icacls "%CD%" /grant "%USERNAME%":(OI)(CI)F /T
-
-#     "%CD%\\PostgreSQL\\pgsql\\bin\\initdb" -U postgres -A trust
-#     """
-
-#     with open('set_permissions.bat', 'w') as file_:
-#         file_.write(line)
-
-#     os.system('set_permissions.bat')
-#     os.system('start_db.bat')
-
 print('-- Create Database --')
 try:
     create_database()
@@ -64,7 +43,7 @@ waitress_port = get_waitress_port()
 
 print('-- Waitress --')
 app = create_app()
-print(f'Running server onn host {HOST} on port {waitress_port}...')
+print(f'Running server on host {HOST} on port {waitress_port}...')
 os.system(f'start http://127.0.0.1:{waitress_port}')
 serve(app, host=HOST, port=waitress_port)
 print('Server stopped')
