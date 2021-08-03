@@ -1,5 +1,5 @@
 @SET PATH="%CD%\pgsql\bin";%PATH%
-@SET PGDATA=%CD%\PostgreSQL\pgsql\data
+@SET PGDATA=%CD%\pgsql\data
 @SET PGDATABASE=postgres
 @SET PGUSER=postgres
 @SET PGLOCALEDIR="%CD%\pgsql\share\locale"
