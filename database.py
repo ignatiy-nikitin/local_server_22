@@ -1,5 +1,6 @@
-from config import CONFIG, get_postgresql_port
 import psycopg2
+
+from settings import POSTGRES_PORT
 
 
 def get_con():
@@ -8,7 +9,7 @@ def get_con():
         user="postgres",
         password="",
         host="127.0.0.1",
-        port=get_postgresql_port(),
+        port=POSTGRES_PORT,
     )
 
 
@@ -35,7 +36,6 @@ def get_items():
     cur = con.cursor()
     cur.execute("SELECT * FROM items;")
     values = cur.fetchall()
-    # print(values)
     con.close()
     return values 
 

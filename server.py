@@ -19,7 +19,7 @@ def get_hostname(url):
     return url_parse(url).netloc
 
 
-class Shortly:
+class Server:
     def __init__(self):
         template_path = os.path.join(os.path.dirname(__file__), "templates")
         self.jinja_env = Environment(
@@ -69,7 +69,7 @@ class Shortly:
 
 
 def create_app(with_static=True):
-    app = Shortly()
+    app = Server()
     if with_static:
         app.wsgi_app = SharedDataMiddleware(
             app.wsgi_app, {"/static": os.path.join(os.path.dirname(__file__), "static")}
