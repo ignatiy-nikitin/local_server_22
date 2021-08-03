@@ -26,11 +26,13 @@ def _fill_start_db_file():
 print('Checking PostreSQL port...')
 if is_port_busy(HOST, POSTGRES_PORT):
     print('PostreSQL port is busy. Go to config.ini, change it and restart program')
+    input()
     exit()
 
 print('Checking Waitress port...')
 if is_port_busy(HOST, WAITRESS_PORT):
     print('Waitress port is busy. Go to config.ini, change it and restart program')
+    input()
     exit()
 
 print('Fill start_db.bat file...')

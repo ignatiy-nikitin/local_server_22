@@ -22,5 +22,5 @@ except CustomConfigException as e:
     print(f'Config error: {e}')
     exit()
 
-POSTGRES_PORT = config['SETTINGS']['postresql_port']
-WAITRESS_PORT = config['SETTINGS']['waitress_port']
+POSTGRES_PORT = int(config['SETTINGS']['postresql_port'])
+WAITRESS_PORT = int(config['SETTINGS']['waitress_port'])
